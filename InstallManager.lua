@@ -10,7 +10,8 @@ for _, i in pairs(InstallStorage) do
 end
 
 if loadString then
-  loadstring(game:HttpGet(loadString))()
+  local scriptContent = game:HttpGet(loadString)
+  loadstring(scriptContent)()
 else
-  print("Classical Hub isnt supported here!")
+  warn("No matching script found for this PlaceId.")
 end
