@@ -52,7 +52,7 @@ local GeneralTab = Window:CreateTab("General", "command")
 
 local FlySection = GeneralTab:CreateSection("Fly")
 local SliderFlySpeed = 10
-local Slider = FlySection:CreateSlider({
+local Slider = GeneralTab:CreateSlider({
     Name = "Fly Speed",
     Range = {10, 300},
     Increment = 2,
@@ -64,7 +64,7 @@ local Slider = FlySection:CreateSlider({
     end,
 })
 
-local FlyToggle = FlySection:CreateToggle({
+local FlyToggle = GeneralTab:CreateToggle({
     Name = "Toggle Fly",
     CurrentValue = false,
     Flag = "FlyToggleValue",
