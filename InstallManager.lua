@@ -11,4 +11,6 @@ end
 
 if loadString then
   loadstring(game:HttpGet(loadString))()
+else
+  print("Classical Hub isnt supported here!")
 end
