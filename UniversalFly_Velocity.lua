@@ -8,9 +8,9 @@ local Humanoid = Character:WaitForChild("Humanoid")
 local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
 
 local flying = false
-local flySpeed = 100 --Set up it to for yourself
-local maxFlySpeed = 1000 --Set up it to for yourself
-local speedIncrement = 0.4 --Set up it to for yourself
+local flySpeed = 100 -- Initial fly speed
+local maxFlySpeed = 1000 -- Maximum fly speed
+local speedIncrement = 0.4 -- Speed increment
 local originalGravity = workspace.Gravity
 
 LocalPlayer.CharacterAdded:Connect(function(newCharacter) 
@@ -24,6 +24,7 @@ local function randomizeValue(value, range)
 end
 
 local function fly()
+    flying = true
     while flying do
         local MoveDirection = Vector3.new()
         local cameraCFrame = workspace.CurrentCamera.CFrame
@@ -53,6 +54,7 @@ local function main(valuetoggle, PlayerFlySpeed)
         workspace.Gravity = 0 
         fly()
     else
+        flying = false
         flySpeed = 100
         HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
         workspace.Gravity = originalGravity
