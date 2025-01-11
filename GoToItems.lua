@@ -1,4 +1,5 @@
-local player = game.Players.LocalPlayer
+local function main()
+    local player = game.Players.LocalPlayer
     local humanoidRootPart = player.Character.HumanoidRootPart
     print("bruh")
     
@@ -58,3 +59,5 @@ local player = game.Players.LocalPlayer
     humanoidRootPart.CFrame = old
     humanoidRootPart.Anchored = false
     game:GetService("ReplicatedStorage").Map.Parent = workspace
+end
+return main
