@@ -19,7 +19,7 @@ local function SendError(Message)
         Title = "Unexpected Error",
         Content = Message,
         Duration = 6.5,
-        Image = "shield-alert",
+        Image = "ban",
      })
 end
 
