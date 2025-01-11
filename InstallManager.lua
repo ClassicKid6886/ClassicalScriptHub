@@ -3,12 +3,12 @@ local placeId = game.PlaceId
 
 local loadString
 for _, i in pairs(InstallStorage) do
-  if i.id = placeId then
+  if i.id == placeId then
     loadString = i.link
     break
   end
 end
 
 if loadString then
-  loadstring(game:HttpGet(loadString)
+  loadstring(game:HttpGet(loadString))()
 end
