@@ -53,6 +53,7 @@ local function main(valuetoggle, PlayerFlySpeed)
         workspace.Gravity = 0 
         fly()
     else
+        flySpeed = 100
         HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
         workspace.Gravity = originalGravity
     end
