@@ -1,7 +1,7 @@
 print("Installing Classical Hub for Slap Battles")
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
-if game.PlaceId == 9431156611 then
+--if game.PlaceId == 9431156611 then
 
 Rayfield:Notify({
     Title = "Loading...",
@@ -57,9 +57,7 @@ local Window = Rayfield:CreateWindow({
     }
  })
 
-local ExtraTab = Window:CreateTab({
-	"Extra", "anvil"
-})
+local ExtraTab = Window:CreateTab("Extra", "anvil")
 
 ExtraTab:CreateButton({
 	Name = "Go To Items",
@@ -67,16 +65,3 @@ ExtraTab:CreateButton({
       		GoToItemsFunction()
   	end    
 })
-
-
-
-else
-    Rayfield:Notify({
-        Title = "Unexpected Error",
-        Content = "Classic Hub is not in the right place...",
-        Duration = 6.5,
-        Image = "cloud-alert",
-     })
-end
-
-OrionLib:Init()
