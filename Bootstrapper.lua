@@ -16,12 +16,25 @@ local function teleportTo(position)
     local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
     
     if hrp then
+        for _, i in ipairs(hrp.Parent:GetChildren()) do
+            if i:IsA("BasePart") and i.Name ~= "HumanoidRootPart" then
+                i.CanCollide = false
+            end
+        end
+
         local tweenService = game:GetService("TweenService")
-        local tweenInfo = TweenInfo.new(4, Enum.EasingStyle.Linear)
+        local tweenInfo = TweenInfo.new(4)
         local goal = {Position = position}
         
         local tween = tweenService:Create(hrp, tweenInfo, goal)
         tween:Play()
+        tween.Completed:Wait()
+
+        for _, i in ipairs(hrp.Parent:GetChildren()) do
+            if i:IsA("BasePart") and i.Name ~= "HumanoidRootPart" then
+                i.CanCollide = true
+            end
+        end
     end
 end
 
