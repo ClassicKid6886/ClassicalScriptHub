@@ -13,7 +13,7 @@ local FlyFunction = loadstring(game:HttpGet('https://github.com/ClassicKid6886/C
 
 local function teleportTo(position)
     local player = game.Players.LocalPlayer
-    local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+    local hrp = player.Character:FindFirstChild("HumanoidRootPart")
     
     if hrp then
         for _, i in ipairs(hrp.Parent:GetChildren()) do
