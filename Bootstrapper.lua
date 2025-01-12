@@ -11,6 +11,20 @@ Rayfield:Notify({
 local GoToItemsFunction = loadstring(game:HttpGet('https://github.com/ClassicKid6886/ClassicalScriptHub/raw/refs/heads/SlapRoyal/GoToItems.lua'))()
 local FlyFunction = loadstring(game:HttpGet('https://github.com/ClassicKid6886/ClassicalScriptHub/raw/refs/heads/Storage/UniversalFly_Velocity.lua'))()
 
+local function teleportTo(position)
+    local player = game.Players.LocalPlayer
+    local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+    
+    if hrp then
+        local tweenService = game:GetService("TweenService")
+        local tweenInfo = TweenInfo.new(4, Enum.EasingStyle.Linear)
+        local goal = {Position = position}
+        
+        local tween = tweenService:Create(hrp, tweenInfo, goal)
+        tween:Play()
+    end
+end
+
 local function SendError(Message)
     Rayfield:Notify({
         Title = "Unexpected Error",
@@ -77,124 +91,146 @@ local WorldTab = Window:CreateTab("World", "map")
 
 local WorldSection = WorldTab:CreateSection("Map Settings")
 local WorldToggle = WorldTab:CreateToggle({
-    Name = "Toggle Fly",
+    Name = "Toggle Map",
     CurrentValue = false,
     Flag = "HideWorldValue",
     Callback = function(Value)
-        if Value then
-            workspace:FindFirstChild("Map").Parent = game.ReplicatedStorage
-        else
-            game.ReplicatedStorage:FindFirstChild("Map").Parent = workspace
+        local map = workspace:FindFirstChild("Map") or game.ReplicatedStorage:FindFirstChild("Map")
+        if map then
+            if Value then
+                map.Parent = game.ReplicatedStorage
+            else
+                map.Parent = workspace
+            end
         end
     end,
 })
+
 WorldTab:CreateButton({
     Name = "Delete Acid",
     Callback = function()
-        local mapFolder
-        if workspace.Map then
-            mapFolder = workspace.Map
-        else
-            mapFolder = game.ReplicatedStorage.Map
+        local mapFolder = workspace:FindFirstChild("Map") or game.ReplicatedStorage:FindFirstChild("Map")
+        if mapFolder then
+            local acidAbnormality = mapFolder:FindFirstChild("AcidAbnormality")
+            if acidAbnormality then
+                local acid = acidAbnormality:FindFirstChild("Acid")
+                if acid then
+                    acid:Destroy()
+                end
+            end
         end
-        mapFolder:FindFirstChild("AcidAbnormality").Acid:Remove()
     end
 })
+
 WorldTab:CreateButton({
     Name = "Delete Lab",
     Callback = function()
-        local mapFolder
-        if workspace.Map then
-            mapFolder = workspace.Map
-        else
-            mapFolder = game.ReplicatedStorage.Map
+        local mapFolder = workspace:FindFirstChild("Map") or game.ReplicatedStorage:FindFirstChild("Map")
+        if mapFolder then
+            local originOffice = mapFolder:FindFirstChild("OriginOffice")
+            if originOffice then
+                originOffice:Destroy()
+            end
         end
-        mapFolder:FindFirstChild("OriginOffice"):Remove()
     end
 })
 local WorldTpSection = WorldTab:CreateSection("Map Teleports")
+
 WorldTab:CreateButton({
     Name = "Teleport Western",
     Callback = function()
-        game.workspace:FindFirstChild(game.Players.LocalPlayer.Name).HumanoidRootPart.Position = Vector3.new(-551, 22, -186)
+        teleportTo(Vector3.new(-551, 22, -186))
     end
 })
+
 WorldTab:CreateButton({
     Name = "Teleport MiniMarket",
     Callback = function()
-        game.workspace:FindFirstChild(game.Players.LocalPlayer.Name).HumanoidRootPart.Position = Vector3.new(-572, 17, -511)
+        teleportTo(Vector3.new(-572, 17, -511))
     end
 })
+
 WorldTab:CreateButton({
     Name = "Teleport Bar",
     Callback = function()
-        game.workspace:FindFirstChild(game.Players.LocalPlayer.Name).HumanoidRootPart.Position = Vector3.new(-480, 17, -741)
+        teleportTo(Vector3.new(-480, 17, -741))
     end
 })
+
 WorldTab:CreateButton({
     Name = "Teleport Acid",
     Callback = function()
-        game.workspace:FindFirstChild(game.Players.LocalPlayer.Name).HumanoidRootPart.Position = Vector3.new(-80, 17, -827)
+        teleportTo(Vector3.new(-80, 17, -827))
     end
 })
+
 WorldTab:CreateButton({
     Name = "Teleport Lighthouse",
     Callback = function()
-        game.workspace:FindFirstChild(game.Players.LocalPlayer.Name).HumanoidRootPart.Position = Vector3.new(249, 55, -605)
+        teleportTo(Vector3.new(249, 55, -605))
     end
 })
+
 WorldTab:CreateButton({
     Name = "Teleport Forest",
     Callback = function()
-        game.workspace:FindFirstChild(game.Players.LocalPlayer.Name).HumanoidRootPart.Position = Vector3.new(-30, 21, -21)
+        teleportTo(Vector3.new(-30, 21, -21))
     end
 })
+
 WorldTab:CreateButton({
     Name = "Teleport Old School",
     Callback = function()
-        game.workspace:FindFirstChild(game.Players.LocalPlayer.Name).HumanoidRootPart.Position = Vector3.new(500, 72, -376)
+        teleportTo(Vector3.new(500, 72, -376))
     end
 })
+
 WorldTab:CreateButton({
     Name = "Teleport Old Garage",
     Callback = function()
-        game.workspace:FindFirstChild(game.Players.LocalPlayer.Name).HumanoidRootPart.Position = Vector3.new(409, 54, 54)
+        teleportTo(Vector3.new(409, 54, 54))
     end
 })
+
 WorldTab:CreateButton({
     Name = "Teleport Farm Shed",
     Callback = function()
-        game.workspace:FindFirstChild(game.Players.LocalPlayer.Name).HumanoidRootPart.Position = Vector3.new(446, 94, 316)
+        teleportTo(Vector3.new(446, 94, 316))
     end
 })
+
 WorldTab:CreateButton({
     Name = "Teleport Lab Outside",
     Callback = function()
-        game.workspace:FindFirstChild(game.Players.LocalPlayer.Name).HumanoidRootPart.Position = Vector3.new(477, 29, 330)
+        teleportTo(Vector3.new(477, 29, 330))
     end
 })
+
 WorldTab:CreateButton({
     Name = "Teleport Abandoned House",
     Callback = function()
-        game.workspace:FindFirstChild(game.Players.LocalPlayer.Name).HumanoidRootPart.Position = Vector3.new(-25, 95, 424)
+        teleportTo(Vector3.new(-25, 95, 424))
     end
 })
+
 WorldTab:CreateButton({
     Name = "Teleport Code House",
     Callback = function()
-        game.workspace:FindFirstChild(game.Players.LocalPlayer.Name).HumanoidRootPart.Position = Vector3.new(-539, 65, 455)
+        teleportTo(Vector3.new(-539, 65, 455))
     end
 })
+
 WorldTab:CreateButton({
     Name = "Teleport Water Cave",
     Callback = function()
-        game.workspace:FindFirstChild(game.Players.LocalPlayer.Name).HumanoidRootPart.Position = Vector3.new(306, -20, -377)
+        teleportTo(Vector3.new(306, -20, -377))
     end
 })
+
 WorldTab:CreateButton({
     Name = "Teleport Big Cave",
     Callback = function()
-        game.workspace:FindFirstChild(game.Players.LocalPlayer.Name).HumanoidRootPart.Position = Vector3.new(-284, -25, 446)
+        teleportTo(Vector3.new(-284, -25, 446))
     end
 })
 
