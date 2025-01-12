@@ -10,32 +10,10 @@ Rayfield:Notify({
 
 local GoToItemsFunction = loadstring(game:HttpGet('https://github.com/ClassicKid6886/ClassicalScriptHub/raw/refs/heads/SlapRoyal/GoToItems.lua'))()
 local FlyFunction = loadstring(game:HttpGet('https://github.com/ClassicKid6886/ClassicalScriptHub/raw/refs/heads/Storage/UniversalFly_Velocity.lua'))()
+local Teleport = loadstring(game:HttpGet("https://raw.githubusercontent.com/ClassicKid6886/ClassicalScriptHub/refs/heads/Storage/UniversalTeleport_Bypassed.lua"))()
 
 local function teleportTo(position)
-    local player = game.Players.LocalPlayer
-    local hrp = player.Character:FindFirstChild("HumanoidRootPart")
-    
-    if hrp then
-        for _, i in ipairs(hrp.Parent:GetChildren()) do
-            if i:IsA("BasePart") and i.Name ~= "HumanoidRootPart" then
-                i.CanCollide = false
-            end
-        end
-
-        local tweenService = game:GetService("TweenService")
-        local tweenInfo = TweenInfo.new(4)
-        local goal = {Position = position}
-        
-        local tween = tweenService:Create(hrp, tweenInfo, goal)
-        tween:Play()
-        tween.Completed:Wait()
-
-        for _, i in ipairs(hrp.Parent:GetChildren()) do
-            if i:IsA("BasePart") and i.Name ~= "HumanoidRootPart" then
-                i.CanCollide = true
-            end
-        end
-    end
+    Teleport(position)
 end
 
 local function SendError(Message)
